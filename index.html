@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>💼 Sistema de Nómina (POO)</h1>
+
+<section class="card">
+<h2>Registrar empleado</h2>
+<div class="grid">
+ <div><label>Nombre</label><input id="nombre" placeholder="Nombre completo"></div>
+ <div><label>Tipo de empleado</label>
+  <select id="tipo">
+   <option value="asalariado">Asalariado</option>
+   <option value="horas">Por horas</option>
+   <option value="comision">Por comisión</option>
+   <option value="temporal">Temporal</option>
+  </select></div>
+ <div><label>Años en la empresa</label><input id="anios" type="number" min="0" step="0.1" value="0"></div>
+ <div class="f asalariado comision temporal"><label>Salario mensual / base ($)</label><input id="salario" type="number" value="3000000"></div>
+ <div class="f horas hide"><label>Tarifa por hora ($)</label><input id="tarifa" type="number" value="20000"></div>
+ <div class="f horas hide"><label>Horas trabajadas</label><input id="horas" type="number" value="40"></div>
+ <div class="f comision hide"><label>Ventas del mes ($)</label><input id="ventas" type="number" value="10000000"></div>
+ <div class="f comision hide"><label>% de comisión</label><input id="pct" type="number" step="0.1" value="5"></div>
+ <div class="f temporal hide"><label>Fin de contrato</label><input id="fin" type="date"></div>
+ <div class="f horas hide chk"><input id="fondo" type="checkbox"><label for="fondo">Acepta fondo de ahorro (2%)</label></div>
+</div>
+<button id="add">Agregar a nómina</button>
+<div class="msg" id="msg"></div>
+</section>
+
+<section class="card">
+<h2>Nómina del mes</h2>
+<div class="wrap"><table>
+<thead><tr><th>Nombre</th><th>Tipo</th><th class="n">Bruto</th><th class="n">Beneficios</th><th class="n">Deducciones</th><th class="n">Neto</th><th></th></tr></thead>
+<tbody id="tb"></tbody></table></div>
+<div class="tot"><span>Total bruto: <span id="tB">$0</span></span><span>Total deducciones: <span id="tD">$0</span></span><span>Total neto: <span id="tN">$0</span></span></div>
+<p class="note">Supuestos: Seguro Social y Pensión = 4% del bruto. La ARL se trata como aporte del empleador (no descuenta al empleado). El bono de alimentación lo paga la empresa y se suma al neto. El fondo de ahorro (2% del bruto) se descuenta del neto como ahorro.</p>
+</section>
+
+<section class="card hide" id="dcard"><h2 id="dt"></h2><div class="det" id="dd"></div></section>
+</body>
+</html>
