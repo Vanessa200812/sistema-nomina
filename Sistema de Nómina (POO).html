@@ -6,6 +6,8 @@
 <>0
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sistema de Nómina</title>
+
+/* ---------- Estilos VANESSA ---------- */
 <style>
 :root{--bg:#f5f6f8;--card:#fff;--tx:#1c2430;--mu:#66707f;--br:#dde1e7;--ac:#1f6feb;--er:#d1242f;--ok:#1a7f37;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--card:#1b2029;--tx:#e6e9ee;--mu:#98a2b3;--br:#2b3340;--ac:#5b9dff;--er:#ff7b72;--ok:#56d364}}
@@ -29,9 +31,13 @@ td.n,th.n{text-align:right}.tot{display:flex;gap:24px;flex-wrap:wrap;margin-top:
 .det{font-size:.88rem}.det div{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--br)}
 .det .neg{color:var(--er)}.det .fin{font-weight:700;border:0;font-size:1rem}.hide{display:none}.note{font-size:.78rem;color:var(--mu);margin-top:8px}
 </style>
+
 </head>
 <body>
 <main>
+
+  /* NATALIA */
+
 <h1>💼 Sistema de Nómina (POO)</h1>
 
 <section class="card">
@@ -70,10 +76,14 @@ td.n,th.n{text-align:right}.tot{display:flex;gap:24px;flex-wrap:wrap;margin-top:
 <section class="card hide" id="dcard"><h2 id="dt"></h2><div class="det" id="dd"></div></section>
 </main>
 
+
+
 <script>
+
+  /*RODOLFO*/
 const fmt = n => n.toLocaleString('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});
 
-/* ---------- Clase abstracta ----------RODOLFO */ 
+/* ---------- Clase abstracta ---------- */ 
 class Empleado {
   static TASA_SEGURIDAD = 0.04;
   static BONO_ALIMENTACION = 1000000;
@@ -107,6 +117,9 @@ class Empleado {
   lineasExtra(){ return []; }
 }
 /*RODOLFO*/
+
+
+/*SANTIAGO*/
 
 /* ---------- Subclases ---------- */
 class Asalariado extends Empleado {
@@ -180,6 +193,10 @@ class Nomina {
   total(fn){ return this.empleados.reduce((s,e)=>s+fn(e),0); }
 }
 
+/*SANTIAGO*/
+
+
+/*ANGIE*/
 /* ---------- UI ---------- */
 const $ = id => document.getElementById(id);
 const nomina = new Nomina();
@@ -229,6 +246,9 @@ function detalle(e){
     `<div><span>${k}</span><span class="${v<0?'neg':''}">${fmt(v)}</span></div>`).join('') +
     `<div class="fin"><span>Neto a pagar</span><span>${fmt(e.calcularSalarioNeto())}</span></div>`;
 }
+
+/*ANGIE*/
+
 campos(); render();
 </script>
 </body>
