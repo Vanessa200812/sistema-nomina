@@ -34,6 +34,83 @@ const fmt = n => n.toLocaleString('es-CO', { style: 'currency', currency: 'COP',
       lineasExtra() { return []; }
     }
 
+    
+    class Asalariado extends Empleado {
+    constructor(nombre, id, salarioSemanal) {
+        super(nombre, id);
+        this.salarioSemanal = salarioSemanal;
+    }
+
+    calcularPago() {
+        return this.salarioSemanal;
+    }
+}
+
+class PorHoras extends Empleado {
+    constructor(nombre, id, horasTrabajadas, tarifaHora) {
+        super(nombre, id);
+        this.horasTrabajadas = horasTrabajadas;
+        this.tarifaHora = tarifaHora;
+    }
+
+    calcularPago() {
+        if (this.horasTrabajadas <= 40) {
+            return this.horasTrabajadas * this.tarifaHora;
+        } else {
+            let horasNormales = 40;
+            let horasExtra = this.horasTrabajadas - 40;
+            return (horasNormales * this.tarifaHora) + (horasExtra * this.tarifaHora * 1.5);
+        }
+    }
+}
+
+class PorComision extends Empleado {
+    constructor(nombre, id, ventasBrutas, tarifaComision) {
+        super(nombre, id);
+        this.ventasBrutas = ventasBrutas;
+        this.tarifaComision = tarifaComision;
+    }
+
+    calcularPago() {
+        return this.ventasBrutas * (this.tarifaComision / 100);
+    }
+}
+
+class Temporal extends Empleado {
+    constructor(nombre, id, pagoFijoContrato) {
+        super(nombre, id);
+        this.pagoFijoContrato = pagoFijoContrato;
+    }
+
+    calcularPago() {
+        return this.pagoFijoContrato;
+    }
+}
+
+// ==========================================
+// CLASE GESTORA DE NÓMINA
+// ==========================================
+
+class Nomina {
+    constructor() {
+        this.empleados = [];
+    }
+
+    agregarEmpleado(empleado) {
+        this.empleados.push(empleado);
+    }
+
+    calcularTotalNomina() {
+        return this.empleados.reduce((total, emp) => total + emp.calcularPago(), 0);
+    }
+
+    obtenerDetalles() {
+        return this.empleados.map(emp => {
+            return `${emp.nombre} (ID: ${emp.id}) - Pago: $${emp.calcularPago().toFixed(2)}`;
+        });
+    }
+}
+
     const $ = id => document.getElementById(id);
     const nomina = new Nomina();
 
@@ -84,4 +161,4 @@ const fmt = n => n.toLocaleString('es-CO', { style: 'currency', currency: 'COP',
     }
 
   
-    campos(); render();
+    campos(); render(); 
